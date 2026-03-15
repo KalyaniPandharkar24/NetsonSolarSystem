@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Box, Grid, Typography } from "@mui/material";
 import Section from "../layout/Section";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";

@@ -60,8 +60,8 @@ export default function AdminReviews() {
       </Typography>
 
       <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-        <Tabs value={tab} onChange={(e, v) => setTab(v)}>
-          <Tab label="Pending Reviews" />
+<Tabs value={tab} onChange={(_, v) => setTab(v)}>
+            <Tab label="Pending Reviews" />
           <Tab label="Approved Reviews" />
         </Tabs>
       </Box>

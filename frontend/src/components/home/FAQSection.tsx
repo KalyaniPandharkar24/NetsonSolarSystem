@@ -41,9 +41,11 @@ const faqs = [
 ];
 
 const FAQSection = () => {
-  const [expanded, setExpanded] = useState(null);
+  const [expanded, setExpanded] = useState<string | null>(null);
 
-  const handleChange = (panel) => (event, isExpanded) => {
+const handleChange =
+  (panel: string) =>
+  (_event: React.SyntheticEvent, isExpanded: boolean) => {
     setExpanded(isExpanded ? panel : null);
   };
 
