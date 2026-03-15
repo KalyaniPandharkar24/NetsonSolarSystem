@@ -1,0 +1,209 @@
+import { Box, Typography, Grid, Divider, IconButton } from "@mui/material";
+import { Link } from "react-router-dom";
+
+import FacebookIcon from "@mui/icons-material/Facebook";
+import TwitterIcon from "@mui/icons-material/Twitter";
+import LinkedInIcon from "@mui/icons-material/LinkedIn";
+import InstagramIcon from "@mui/icons-material/Instagram";
+
+import logo from "../../assets/logo.webp";
+
+const Footer = () => {
+  return (
+    <Box
+      component="footer"
+      sx={{
+        background: "#0f172a",
+        color: "#fff",
+        mt: "auto",
+        borderTop: "4px solid #16A34A",
+      }}
+    >
+      <Box
+        sx={{
+          maxWidth: 1200,
+          mx: "auto",
+          px: { xs: 3, md: 4 },
+          py: { xs: 6, md: 7 },
+        }}
+      >
+        <Grid container spacing={5}>
+          {/* Brand */}
+          <Grid item xs={12} md={4}>
+            <Box
+              component="img"
+              src={logo}
+              alt="Netson Solar"
+              sx={{
+                width: 200,
+                mb: 2,
+                background: "#fff",
+                p: 1,
+                borderRadius: 1,
+                transition: "transform 180ms ease, box-shadow 180ms ease",
+                boxShadow: "0 0 0 rgba(0,0,0,0)",
+                "&:hover": {
+                  transform: "translateY(-2px)",
+                  boxShadow: "0 14px 30px rgba(0,0,0,0.18)",
+                },
+              }}
+            />
+
+            <Typography
+              sx={{
+                color: "#cbd5e1",
+                lineHeight: 1.8,
+                fontSize: 16,
+              }}
+            >
+              Providing reliable, affordable, and sustainable solar energy
+              solutions for homes and businesses.
+            </Typography>
+
+            <Typography
+              component="a"
+              href="https://www.google.com/maps/place/Chimbali+Phata,+Pune,+Maharashtra+410501"
+              target="_blank"
+              rel="noopener noreferrer"
+              sx={{
+                ...contactStyle,
+                display: "block",
+                mt: 2,
+                maxWidth: 320,
+                fontSize: 13,
+                lineHeight: 1.7,
+                textDecoration: "none",
+                "&:hover": {
+                  color: "#16A34A",
+                },
+              }}
+            >
+              Plot no. 161, Office no. 03, 1st Floor, Priyanka Warehouse,
+              Pune-Nashik Road, Near Shell Petrol Pump, Chimbali Phata, Pune,
+              Maharashtra - 410501
+            </Typography>
+          </Grid>
+
+          {/* Links */}
+          <Grid item xs={12} md={4}>
+            <Typography variant="h6" sx={headingStyle}>
+              Pages
+            </Typography>
+
+            <Box sx={underline} />
+
+            <Typography component={Link} to="/" sx={linkStyle}>
+              Home
+            </Typography>
+
+            <Typography component={Link} to="/services" sx={linkStyle}>
+              Services
+            </Typography>
+
+            <Typography component={Link} to="/projects" sx={linkStyle}>
+              Projects
+            </Typography>
+
+            <Typography component={Link} to="/contact" sx={linkStyle}>
+              Contact
+            </Typography>
+          </Grid>
+
+          {/* Contact */}
+          <Grid item xs={12} md={4}>
+            <Typography variant="h6" sx={headingStyle}>
+              Contact
+            </Typography>
+
+            <Box sx={underline} />
+
+            <Typography sx={contactStyle}>📍 Pune, Maharashtra</Typography>
+
+            <Typography sx={contactStyle}>✉️ netsonsolarsystem@gmail.com</Typography>
+
+            <Typography sx={{ ...contactStyle, mb: 2 }}>
+              📞 +91 8010966816
+            </Typography>
+
+            {/* Social icons */}
+            <Box sx={{ mt: 1 }}>
+              <IconButton sx={socialStyle} aria-label="Facebook">
+                <FacebookIcon />
+              </IconButton>
+
+              <IconButton sx={socialStyle} aria-label="Twitter">
+                <TwitterIcon />
+              </IconButton>
+
+              <IconButton sx={socialStyle} aria-label="LinkedIn">
+                <LinkedInIcon />
+              </IconButton>
+
+              <IconButton sx={socialStyle} aria-label="Instagram">
+                <InstagramIcon />
+              </IconButton>
+            </Box>
+          </Grid>
+        </Grid>
+
+        <Divider sx={{ my: 5, borderColor: "#334155" }} />
+
+        <Typography
+          align="center"
+          sx={{
+            color: "#94a3b8",
+            fontSize: 14,
+          }}
+        >
+          © {new Date().getFullYear()} Netson Solar System. All rights reserved.
+        </Typography>
+      </Box>
+    </Box>
+  );
+};
+
+/* styles */
+
+const headingStyle = {
+  mb: 1,
+  fontWeight: 600,
+};
+
+const underline = {
+  width: 40,
+  height: 2,
+  background: "#16A34A",
+  mb: 2,
+};
+
+const linkStyle = {
+  color: "#cbd5e1",
+  display: "block",
+  mb: 1,
+  textDecoration: "none",
+  transition: "0.3s",
+  "&:hover": {
+    color: "#16A34A",
+    transform: "translateX(3px)",
+  },
+};
+
+const contactStyle = {
+  color: "#cbd5e1",
+  mb: 1,
+};
+
+const socialStyle = {
+  color: "#cbd5e1",
+  background: "#1e293b",
+  mr: 1,
+  transform: "translateY(0px) scale(1)",
+  transition: "transform 180ms ease, background-color 180ms ease, color 180ms ease",
+  "&:hover": {
+    background: "rgba(22, 163, 74, 0.18)",
+    color: "#16A34A",
+    transform: "translateY(-2px) scale(1.06)",
+  },
+};
+
+export default Footer;
