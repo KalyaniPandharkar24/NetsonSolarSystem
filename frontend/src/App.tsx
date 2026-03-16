@@ -74,6 +74,11 @@ function App() {
         }
       />
 
+      {/* Quick action routes */}
+      <Route path="/get-quote" element={<Navigate to="/?quote=1" replace />} />
+      <Route path="/get-visit" element={<Navigate to="/?visit=1" replace />} />
+      <Route path="/get-call" element={<Navigate to="/contact?callback=1" replace />} />
+
       {/* ================================================= */}
       {/* ================= ADMIN PUBLIC ================== */}
       {/* ================================================= */}

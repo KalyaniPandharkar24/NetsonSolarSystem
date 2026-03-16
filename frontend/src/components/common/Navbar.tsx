@@ -4,7 +4,7 @@ import {
   Stack,
   Typography,
 } from "@mui/material";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
 
 import SuryaGharDialog from "../common/SuryaGharDialog";
@@ -14,19 +14,34 @@ const Navbar = () => {
   const [open, setOpen] = useState(false);
   const [quoteOpen, setQuoteOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState("home");
   const navbarRef = useRef<HTMLDivElement | null>(null);
 
   const location = useLocation();
+  const navigate = useNavigate();
 
   const navItems = [
-    { label: "Home", path: "/" },
-    { label: "Services", path: "/services" },
-    { label: "Projects", path: "/projects" },
-    { label: "Contact", path: "/contact" },
+    { label: "Home", path: "/", sectionId: "home" },
+    { label: "Services", path: "/services", sectionId: "services" },
+    { label: "Projects", path: "/projects", sectionId: "projects" },
+    { label: "Contact", path: "/contact", sectionId: "contact" },
   ];
 
-  const isActive = (path: string) =>
-    location.pathname === path;
+  const isActive = (path: string, sectionId?: string) => {
+    if (location.pathname === "/" && sectionId) {
+      return activeSection === sectionId;
+    }
+
+    return location.pathname === path;
+  };
+
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    if (params.get("quote") === "1") {
+      setQuoteOpen(true);
+      navigate("/", { replace: true });
+    }
+  }, [location.search, navigate]);
 
   useEffect(() => {
     const updateNavbarState = () => {
@@ -61,6 +76,46 @@ const Navbar = () => {
         updateNavbarState
       );
     };
+  }, [location.pathname]);
+
+  useEffect(() => {
+    if (location.pathname !== "/") {
+      setActiveSection("home");
+      return;
+    }
+
+    const sectionIds = navItems.map((item) => item.sectionId);
+    const elements = sectionIds
+      .map((id) => document.getElementById(id))
+      .filter(Boolean) as HTMLElement[];
+
+    if (!elements.length) return;
+
+    const navbarHeight = navbarRef.current?.offsetHeight ?? 0;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort(
+            (a, b) =>
+              (b.intersectionRatio || 0) -
+              (a.intersectionRatio || 0)
+          );
+
+        const top = visible[0];
+        if (!top) return;
+
+        setActiveSection(top.target.id || "home");
+      },
+      {
+        rootMargin: `-${navbarHeight + 12}px 0px -55% 0px`,
+        threshold: [0.25, 0.5, 0.75],
+      }
+    );
+
+    elements.forEach((el) => observer.observe(el));
+
+    return () => observer.disconnect();
   }, [location.pathname]);
 
   return (
@@ -127,22 +182,51 @@ const Navbar = () => {
                 component={Link}
                 to={item.path}
                 sx={{
-                  color: scrolled
-                    ? isActive(item.path)
-                      ? "#16A34A"
-                      : "#0B1F3A"
+                  color: isActive(item.path, item.sectionId)
+                    ? "#16A34A"
+                    : scrolled
+                    ? "#0B1F3A"
                     : "#FFFFFF",
-                  fontWeight: isActive(item.path)
-                    ? 700
+                  fontWeight: isActive(item.path, item.sectionId)
+                    ? 600
                     : 500,
+                  fontSize: "0.93rem",
                   px: 2,
                   borderRadius: 2,
                   textTransform: "none",
+                  position: "relative",
+                  backgroundColor: "transparent",
+                  "&::after": {
+                    content: '""',
+                    position: "absolute",
+                    left: 12,
+                    right: 12,
+                    bottom: 5,
+                    height: 2,
+                    borderRadius: 999,
+                    backgroundColor: isActive(item.path, item.sectionId)
+                      ? "#16A34A"
+                      : "transparent",
+                    transform: isActive(item.path, item.sectionId)
+                      ? "scaleX(1)"
+                      : "scaleX(0)",
+                    transformOrigin: "center",
+                    transition:
+                      "transform .28s ease, background-color .28s ease",
+                  },
                   "&:hover": {
-                    backgroundColor: scrolled
-                      ? "#F1F5F9"
-                      : "rgba(255,255,255,0.12)",
+                    backgroundColor: "transparent",
                     color: "#16A34A",
+                    fontWeight: 700,
+                    transform: "translateY(-1px)",
+                  },
+                  "&:hover::after": {
+                    backgroundColor: isActive(item.path, item.sectionId)
+                      ? "#16A34A"
+                      : "transparent",
+                    transform: isActive(item.path, item.sectionId)
+                      ? "scaleX(1)"
+                      : "scaleX(0)",
                   },
                 }}
               >

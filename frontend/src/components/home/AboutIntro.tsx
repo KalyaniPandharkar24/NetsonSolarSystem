@@ -16,7 +16,7 @@ const AboutSection = () => {
             {/* SMALL LABEL */}
             <Typography
               sx={{
-                color: "#ef4444",
+                color: "#16A34A",
                 fontWeight: 600,
                 mb: 2,
                 fontSize: "0.85rem",
@@ -38,7 +38,7 @@ const AboutSection = () => {
                 color: "#111827",
               }}
             >
-              We Are a Powerful Modern Team in Renovating
+              Netson Solar System delivers rooftop solar done right
             </Typography>
 
             {/* PARAGRAPH 1 */}
@@ -51,11 +51,10 @@ const AboutSection = () => {
                 fontSize: "1.02rem",
               }}
             >
-              At Netson Solar System, we are pioneers in delivering
-              sustainable energy solutions that meet the growing demand
-              for renewable power. Our company was founded on the
-              principles of innovation, reliability, and customer
-              satisfaction.
+              We are a Maharashtra based solar EPC team specializing in
+              residential, commercial, and industrial rooftop systems. Our
+              focus is simple: clean design, safe execution, and dependable
+              performance for years after commissioning.
             </Typography>
 
             {/* PARAGRAPH 2 */}
@@ -67,10 +66,9 @@ const AboutSection = () => {
                 fontSize: "1.02rem",
               }}
             >
-              With a dedicated team of solar experts, we provide
-              comprehensive solar energy solutions tailored to the
-              needs of residential, commercial, and industrial clients
-              while supporting a cleaner, greener future.
+              From site survey and structure design to subsidy guidance and
+              after-sales support, we handle the full project lifecycle with
+              clear communication and documented quality checks.
             </Typography>
 
           </Grid>

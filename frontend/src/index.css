@@ -16,12 +16,36 @@ body,
 }
 
 body {
-  background: #F8FAFC;
+  background: linear-gradient(180deg, #F8FAFC 0%, #EEF2FF 100%);
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
 }
 
 * {
   box-sizing: border-box;
+}
+
+/* =========================
+   GLASS MORPHISM BASE
+========================= */
+
+:root {
+  --glass-bg: rgba(255, 255, 255, 0.7);
+  --glass-bg-strong: rgba(255, 255, 255, 0.82);
+  --glass-border: rgba(15, 23, 42, 0.08);
+  --glass-shadow: 0 20px 40px rgba(15, 23, 42, 0.12);
+  --glass-blur: 16px;
+}
+
+.MuiPaper-root {
+  background-color: var(--glass-bg);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
+}
+
+.MuiCard-root {
+  background-color: var(--glass-bg-strong);
 }
 
 

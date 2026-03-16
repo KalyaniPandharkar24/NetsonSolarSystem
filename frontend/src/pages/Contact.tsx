@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import {
   Box,
   Container,
@@ -33,6 +34,9 @@ type QuickContact = {
 };
 
 const ContactPage = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
+
   const handleScrollToForm = () => {
     const el = document.getElementById("contact-form");
     if (!el) return;
@@ -43,6 +47,14 @@ const ContactPage = () => {
       phoneInput?.focus();
     }, 200);
   };
+
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    if (params.get("callback") === "1") {
+      handleScrollToForm();
+      navigate("/contact", { replace: true });
+    }
+  }, [location.search, navigate]);
 
   const quickContacts: QuickContact[] = [
     {

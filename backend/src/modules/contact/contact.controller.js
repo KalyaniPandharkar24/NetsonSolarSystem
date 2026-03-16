@@ -37,7 +37,7 @@ export const submitContact = async (req, res, next) => {
 
     if (normalizedType === "general" && !safeEmail) {
       return res.status(400).json({
-        message: "Email is required for this inquiry",
+        message: "Email is required for this Enquiry",
       });
     }
 

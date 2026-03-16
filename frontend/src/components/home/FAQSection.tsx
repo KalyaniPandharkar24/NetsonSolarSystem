@@ -5,9 +5,11 @@ import {
   Accordion,
   AccordionSummary,
   AccordionDetails,
+  Button,
 } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 import faqImage from "../../assets/FAQ.jpg";
 
@@ -121,6 +123,48 @@ const handleChange =
                   </Accordion>
                 );
               })}
+            </Box>
+
+            <Box
+              sx={{
+                mt: { xs: 3, md: 4 },
+                p: { xs: 2.5, md: 3 },
+                borderRadius: 3,
+                border: "1px solid #E2E8F0",
+                backgroundColor: "#F8FAFC",
+                display: "flex",
+                flexDirection: { xs: "column", md: "row" },
+                alignItems: { xs: "flex-start", md: "center" },
+                justifyContent: "space-between",
+                gap: 2,
+              }}
+            >
+              <Box>
+                <Typography fontWeight={700}>
+                  Still have questions?
+                </Typography>
+                <Typography color="text.secondary" sx={{ mt: 0.5 }}>
+                  Get a free site visit and a tailored solar plan.
+                </Typography>
+              </Box>
+              <Button
+                component={Link}
+                to="/contact#contact-form"
+                variant="contained"
+                sx={{
+                  bgcolor: "#16A34A",
+                  color: "#FFFFFF",
+                  textTransform: "none",
+                  fontWeight: 700,
+                  px: 3,
+                  borderRadius: 999,
+                  "&:hover": {
+                    bgcolor: "#15803D",
+                  },
+                }}
+              >
+                Talk to an Expert
+              </Button>
             </Box>
           </Box>
 

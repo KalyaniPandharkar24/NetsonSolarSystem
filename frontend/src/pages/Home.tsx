@@ -15,16 +15,23 @@ const HomePage = () => {
       "Netson Solar System | Rooftop Solar Installation Experts";
   }, []);  return (
     <>
-      <HeroSection />
-      <AboutSection />
-      <WhyChooseUsSection />
-      <SkillsSection />
-
-      <TestimonialsSection />
-      <TimelineSection />
-<SolarCTASection />
-      <SolarCalculatorSection />
-      <FAQSection />
+      <div id="home">
+        <HeroSection />
+      </div>
+      <div id="services">
+        <AboutSection />
+        <WhyChooseUsSection />
+        <SkillsSection />
+      </div>
+      <div id="projects">
+        <TestimonialsSection />
+        <TimelineSection />
+      </div>
+      <div id="contact">
+        <SolarCTASection />
+        <SolarCalculatorSection />
+        <FAQSection />
+      </div>
     </>
   );
 };

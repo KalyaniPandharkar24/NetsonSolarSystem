@@ -29,17 +29,17 @@ import VisibilityIcon from "@mui/icons-material/Visibility";
 import DeleteIcon from "@mui/icons-material/Delete";
 import DoneIcon from "@mui/icons-material/Done";
 
-const inquiryLabel = (contact: any) => {
+const EnquiryLabel = (contact: any) => {
   if (contact.service) return contact.service;
   if (contact.type === "quote") return "Solar Quote";
   if (contact.type === "site_visit") return "Free Site Visit";
   return "-";
 };
 
-const inquiryTypeLabel = (type?: string) => {
+const EnquiryTypeLabel = (type?: string) => {
   if (type === "quote") return "Solar Quote";
   if (type === "site_visit") return "Free Site Visit";
-  return "General Inquiry";
+  return "General Enquiry";
 };
 
 export default function AdminContacts() {
@@ -87,7 +87,7 @@ export default function AdminContacts() {
 
     setToast({
       open: true,
-      msg: "Inquiry deleted",
+      msg: "Enquiry deleted",
       type: "error",
     });
 
@@ -95,7 +95,7 @@ export default function AdminContacts() {
   };
 
   let filtered = contacts.filter((c) =>
-    `${c.name} ${c.email || ""} ${c.phone} ${inquiryLabel(c)} ${c.type || ""} ${c.address || ""}`
+    `${c.name} ${c.email || ""} ${c.phone} ${EnquiryLabel(c)} ${c.type || ""} ${c.address || ""}`
       .toLowerCase()
       .includes(search.toLowerCase())
   );
@@ -150,7 +150,7 @@ export default function AdminContacts() {
                 <TableCell>{c.name}</TableCell>
                 <TableCell>{c.phone}</TableCell>
                 <TableCell>{c.email || "-"}</TableCell>
-                <TableCell>{inquiryLabel(c)}</TableCell>
+                <TableCell>{EnquiryLabel(c)}</TableCell>
                 <TableCell>
                   <Chip
                     label={c.status === "new" ? "New" : "Contacted"}
@@ -194,7 +194,7 @@ export default function AdminContacts() {
         maxWidth="sm"
         fullWidth
       >
-        <DialogTitle>Inquiry Details</DialogTitle>
+        <DialogTitle>Enquiry Details</DialogTitle>
 
         <DialogContent dividers>
           {selected && (
@@ -210,12 +210,12 @@ export default function AdminContacts() {
               <Divider sx={{ my: 2 }} />
 
               <Typography>
-                <b>Service Requested:</b> {inquiryLabel(selected)}
+                <b>Service Requested:</b> {EnquiryLabel(selected)}
               </Typography>
 
               {selected.type && (
                 <Typography mt={1}>
-                  <b>Inquiry Type:</b> {inquiryTypeLabel(selected.type)}
+                  <b>Enquiry Type:</b> {EnquiryTypeLabel(selected.type)}
                 </Typography>
               )}
 

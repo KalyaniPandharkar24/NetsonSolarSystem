@@ -1,6 +1,7 @@
 ﻿import { Box, Typography, Button, Stack } from "@mui/material";
 import CalendarMonthRoundedIcon from "@mui/icons-material/CalendarMonthRounded";
 import { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import Section from "../layout/Section";
 import QuoteSiteVisitDialog from "../common/QuoteSiteVisitDialog";
 
@@ -14,6 +15,8 @@ const images = [
 const Hero = () => {
   const [index, setIndex] = useState(0);
   const [visitOpen, setVisitOpen] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -22,6 +25,14 @@ const Hero = () => {
 
     return () => clearInterval(interval);
   }, []);
+
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    if (params.get("visit") === "1") {
+      setVisitOpen(true);
+      navigate("/", { replace: true });
+    }
+  }, [location.search, navigate]);
 
   return (
     <Box
@@ -118,8 +129,7 @@ const Hero = () => {
             <Button
               variant="outlined"
               size="large"
-              component="a"
-              href="tel:+918010966816"
+              onClick={() => navigate("/get-call")}
               sx={{
                 borderColor: "#FFFFFF",
                 color: "#FFFFFF",

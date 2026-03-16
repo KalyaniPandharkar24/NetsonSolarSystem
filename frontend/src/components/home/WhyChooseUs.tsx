@@ -5,26 +5,26 @@ import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 
 const features = [
   {
-    title: "Expertise & Experience",
-    desc: "With a track record of successful installations, we are leaders in the solar industry.",
+    title: "In-house EPC team",
+    desc: "Design, structure, installation, and commissioning are handled by our own trained crews.",
   },
   {
-    title: "Quality Products",
-    desc: "We use only the highest quality materials and equipment, ensuring long-lasting performance.",
+    title: "Transparent project process",
+    desc: "Clear timelines, documented checks, and clean site handover on every installation.",
   },
   {
-    title: "Customer Satisfaction",
-    desc: "Our commitment to service has earned us a reputation for excellence.",
+    title: "Subsidy and net metering support",
+    desc: "We guide paperwork and approvals so you can move from quote to commissioning faster.",
   },
   {
-    title: "Sustainability Commitment",
-    desc: "We are passionate about protecting the environment and helping our clients do the same.",
+    title: "Service after commissioning",
+    desc: "Easy support for inspections, maintenance, and performance tracking.",
   },
 ];
 
 const stats = [
-  { value: 100, suffix: "%", label: "Quality" },
-  { value: 5, suffix: "k", label: "Objects" },
+  { value: 100, suffix: "%", label: "Quality checks" },
+  { value: 5, suffix: "k", label: "kW delivered" },
   { value: 203, suffix: "", label: "Projects" },
 ];
 
@@ -95,11 +95,9 @@ const WhyChooseUs = () => {
                 fontSize: "1rem",
               }}
             >
-              Netson Solar System is a trusted solar energy solutions provider
-              delivering high-performance solar systems for residential,
-              commercial, and industrial sectors. With years of expertise and
-              a commitment to sustainability, we aim to make clean energy
-              accessible for all.
+              We build solar systems that perform well beyond commissioning.
+              Our focus is on safe installation, clean routing, and dependable
+              service so customers get consistent output and clear support.
             </Typography>
 
             {/* STATS */}
@@ -146,7 +144,7 @@ const WhyChooseUs = () => {
               >
                 <CheckCircleIcon
                   sx={{
-                    color: "#ef4444",
+                    color: "#16A34A",
                     mr: 2,
                     mt: "3px",
                     fontSize: 22,

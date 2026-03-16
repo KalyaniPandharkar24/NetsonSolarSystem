@@ -9,8 +9,8 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-const INQUIRY_LABELS = {
-  general: "General Inquiry",
+const ENQUIRY_LABELS = {
+  general: "General Enquiry",
   quote: "Solar Quote",
   site_visit: "Free Site Visit",
 };
@@ -24,11 +24,11 @@ const renderField = (label, value) => {
 };
 
 const buildDetailsHtml = (data) => {
-  const inquiryType =
-    INQUIRY_LABELS[data.type] || INQUIRY_LABELS.general;
+  const EnquiryType =
+    ENQUIRY_LABELS[data.type] || ENQUIRY_LABELS.general;
 
   return [
-    renderField("Inquiry Type", inquiryType),
+    renderField("Enquiry Type", EnquiryType),
     renderField("Service", data.service),
     renderField("Name", data.name),
     renderField("Phone", data.phone),
@@ -46,15 +46,15 @@ const buildDetailsHtml = (data) => {
 };
 
 export const sendContactEmails = async (data) => {
-  const inquiryLabel =
-    INQUIRY_LABELS[data.type] || INQUIRY_LABELS.general;
+  const EnquiryLabel =
+    ENQUIRY_LABELS[data.type] || ENQUIRY_LABELS.general;
   const detailsHtml = buildDetailsHtml(data);
 
   try {
     const ownerMail = {
       from: process.env.EMAIL_USER,
       to: process.env.CLIENT_EMAIL,
-      subject: `New ${inquiryLabel} - Netson Solar Website`,
+      subject: `New ${EnquiryLabel} - Netson Solar Website`,
       html: `
         <h2 style="color:#16A34A;">New Website Enquiry</h2>
         ${detailsHtml}
@@ -71,7 +71,7 @@ export const sendContactEmails = async (data) => {
       const userMail = {
         from: process.env.EMAIL_USER,
         to: data.email,
-        subject: `Thank you for your ${inquiryLabel.toLowerCase()} request`,
+        subject: `Thank you for your ${EnquiryLabel.toLowerCase()} request`,
         html: `
           <div style="font-family: Arial, sans-serif; max-width:600px; margin:auto; border:1px solid #E5E7EB; border-radius:8px; overflow:hidden;">
             <div style="background:#16A34A; color:white; padding:16px;">

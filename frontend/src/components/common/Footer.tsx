@@ -1,10 +1,13 @@
-import { Box, Typography, Grid, Divider, IconButton } from "@mui/material";
+import { Box, Typography, Grid, Divider, IconButton, Stack } from "@mui/material";
 import { Link } from "react-router-dom";
 
 import FacebookIcon from "@mui/icons-material/Facebook";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import InstagramIcon from "@mui/icons-material/Instagram";
+import PlaceOutlinedIcon from "@mui/icons-material/PlaceOutlined";
+import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
+import LocalPhoneOutlinedIcon from "@mui/icons-material/LocalPhoneOutlined";
 
 import logo from "../../assets/logo.webp";
 
@@ -27,9 +30,13 @@ const Footer = () => {
           py: { xs: 6, md: 7 },
         }}
       >
-        <Grid container spacing={5}>
+        <Grid
+          container
+          spacing={{ xs: 4, md: 2 }}
+          columnSpacing={{ xs: 3, md: 1.5 }}
+        >
           {/* Brand */}
-          <Grid item xs={12} md={4}>
+          <Grid item xs={12} md={7} lg={6}>
             <Box
               component="img"
               src={logo}
@@ -54,10 +61,11 @@ const Footer = () => {
                 color: "#cbd5e1",
                 lineHeight: 1.8,
                 fontSize: 16,
+                maxWidth: "100%",
+                whiteSpace: "nowrap",
               }}
             >
-              Providing reliable, affordable, and sustainable solar energy
-              solutions for homes and businesses.
+              Providing reliable, affordable, and sustainable solar energy solutions for homes and businesses.
             </Typography>
 
             <Typography
@@ -69,8 +77,8 @@ const Footer = () => {
                 ...contactStyle,
                 display: "block",
                 mt: 2,
-                maxWidth: 320,
-                fontSize: 13,
+                maxWidth: 360,
+                fontSize: 14,
                 lineHeight: 1.7,
                 textDecoration: "none",
                 "&:hover": {
@@ -84,64 +92,82 @@ const Footer = () => {
             </Typography>
           </Grid>
 
-          {/* Links */}
-          <Grid item xs={12} md={4}>
-            <Typography variant="h6" sx={headingStyle}>
-              Pages
-            </Typography>
+          {/* Links + Contact (tighter grouping) */}
+          <Grid item xs={12} md={5} lg={6}>
+            <Box
+              sx={{
+                display: "flex",
+                gap: { xs: 4, md: 2 },
+                flexWrap: { xs: "wrap", md: "wrap", lg: "nowrap" },
+                alignItems: "flex-start",
+                justifyContent: { xs: "flex-start", md: "flex-end" },
+              }}
+            >
+              <Box sx={{ minWidth: 120 }}>
+                <Typography variant="h6" sx={headingStyle}>
+                  Pages
+                </Typography>
 
-            <Box sx={underline} />
+                <Box sx={underline} />
 
-            <Typography component={Link} to="/" sx={linkStyle}>
-              Home
-            </Typography>
+                <Typography component={Link} to="/" sx={linkStyle}>
+                  Home
+                </Typography>
 
-            <Typography component={Link} to="/services" sx={linkStyle}>
-              Services
-            </Typography>
+                <Typography component={Link} to="/services" sx={linkStyle}>
+                  Services
+                </Typography>
 
-            <Typography component={Link} to="/projects" sx={linkStyle}>
-              Projects
-            </Typography>
+                <Typography component={Link} to="/projects" sx={linkStyle}>
+                  Projects
+                </Typography>
 
-            <Typography component={Link} to="/contact" sx={linkStyle}>
-              Contact
-            </Typography>
-          </Grid>
+                <Typography component={Link} to="/contact" sx={linkStyle}>
+                  Contact
+                </Typography>
+              </Box>
 
-          {/* Contact */}
-          <Grid item xs={12} md={4}>
-            <Typography variant="h6" sx={headingStyle}>
-              Contact
-            </Typography>
+              <Box sx={{ minWidth: 200 }}>
+                <Typography variant="h6" sx={headingStyle}>
+                  Contact
+                </Typography>
 
-            <Box sx={underline} />
+                <Box sx={underline} />
 
-            <Typography sx={contactStyle}>📍 Pune, Maharashtra</Typography>
+                <Stack spacing={1.25} sx={{ mb: 2 }}>
+                  <Stack direction="row" spacing={1.5} alignItems="center">
+                    <PlaceOutlinedIcon sx={{ color: "#94a3b8" }} fontSize="small" />
+                    <Typography sx={contactStyle}>Pune, Maharashtra</Typography>
+                  </Stack>
+                  <Stack direction="row" spacing={1.5} alignItems="center">
+                    <EmailOutlinedIcon sx={{ color: "#94a3b8" }} fontSize="small" />
+                    <Typography sx={contactStyle}>netsonsolarsystem@gmail.com</Typography>
+                  </Stack>
+                  <Stack direction="row" spacing={1.5} alignItems="center">
+                    <LocalPhoneOutlinedIcon sx={{ color: "#94a3b8" }} fontSize="small" />
+                    <Typography sx={contactStyle}>+91 8010966816</Typography>
+                  </Stack>
+                </Stack>
 
-            <Typography sx={contactStyle}>✉️ netsonsolarsystem@gmail.com</Typography>
+                {/* Social icons */}
+                <Box sx={{ mt: 1 }}>
+                  <IconButton sx={socialStyle} aria-label="Facebook">
+                    <FacebookIcon />
+                  </IconButton>
 
-            <Typography sx={{ ...contactStyle, mb: 2 }}>
-              📞 +91 8010966816
-            </Typography>
+                  <IconButton sx={socialStyle} aria-label="Twitter">
+                    <TwitterIcon />
+                  </IconButton>
 
-            {/* Social icons */}
-            <Box sx={{ mt: 1 }}>
-              <IconButton sx={socialStyle} aria-label="Facebook">
-                <FacebookIcon />
-              </IconButton>
+                  <IconButton sx={socialStyle} aria-label="LinkedIn">
+                    <LinkedInIcon />
+                  </IconButton>
 
-              <IconButton sx={socialStyle} aria-label="Twitter">
-                <TwitterIcon />
-              </IconButton>
-
-              <IconButton sx={socialStyle} aria-label="LinkedIn">
-                <LinkedInIcon />
-              </IconButton>
-
-              <IconButton sx={socialStyle} aria-label="Instagram">
-                <InstagramIcon />
-              </IconButton>
+                  <IconButton sx={socialStyle} aria-label="Instagram">
+                    <InstagramIcon />
+                  </IconButton>
+                </Box>
+              </Box>
             </Box>
           </Grid>
         </Grid>
@@ -190,7 +216,7 @@ const linkStyle = {
 
 const contactStyle = {
   color: "#cbd5e1",
-  mb: 1,
+  mb: 0,
 };
 
 const socialStyle = {

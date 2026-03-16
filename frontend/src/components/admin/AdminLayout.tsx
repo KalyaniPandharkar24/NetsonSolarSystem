@@ -40,6 +40,9 @@ export default function AdminLayout() {
             width: drawerWidth,
             background: "#0f172a",
             color: "#fff",
+            border: "none",
+            boxShadow: "none",
+            backdropFilter: "none",
           },
         }}
       >
@@ -85,7 +88,11 @@ export default function AdminLayout() {
           position="static"
           elevation={0}
           color="default"
-          sx={{ borderBottom: "1px solid #e5e7eb" }}
+          sx={{
+            borderBottom: "1px solid #e5e7eb",
+            background: "rgba(255,255,255,0.7)",
+            backdropFilter: "blur(12px)",
+          }}
         >
           <Toolbar sx={{ justifyContent: "space-between" }}>
             <Typography variant="h6" fontWeight={700}>
@@ -106,7 +113,7 @@ export default function AdminLayout() {
         <Box
           sx={{
             p: 4,
-            background: "#f8fafc",
+            background: "transparent",
             flexGrow: 1,
           }}
         >
